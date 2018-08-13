@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <section class="nav-section">
     <!-- nav -->
       <app-navbar
@@ -40,6 +41,7 @@ export default {
 $primary: #00a083;
 
 body {
+  font-family: 'Open Sans', sans-serif !important;
   background: rgba(227,228,206,1);
   background: -moz-linear-gradient(left, rgba(227,228,206,1) 0%, rgba(218,219,199,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(227,228,206,1)), color-stop(100%, rgba(218,219,199,1)));

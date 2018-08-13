@@ -10,11 +10,10 @@
       <b-navbar-nav class="btn-group" role="group">
         <b-nav-item
           :exact="link.path === '/'"
-          :class="$route.path === link.path ? 'btn btn-primary btn-sm' : 'btn btn-dark btn-sm'"
+          :class="$route.path === link.path ? 'btn btn-primary' : 'btn btn-dark'"
           v-for="(link, index) in links"
           :to="link.path"
-          :key="index"
-          @click="slideActive">
+          :key="index">
           {{ link.name }}
         </b-nav-item>
         <span class="nav-slide-line"></span>
@@ -39,10 +38,7 @@
 <script>
 import {
   TweenMax,
-  TimelineLite,
-  Power2,
-  Elastic,
-  CSSPlugin
+  Power2
 } from 'gsap/TweenMax'
 
 export default {
@@ -57,7 +53,7 @@ export default {
   },
   methods: {
     slideActive () {
-      this.$nextTick (function () {
+      this.$nextTick(function () {
         let activeNav = document.querySelector('.btn-primary')
         let activeNavOffset = activeNav.offsetLeft
         let navActiveSlide = document.querySelector('.nav-slide-line')
@@ -65,16 +61,19 @@ export default {
           navActiveSlide,
           0.75,
           {
-            backgroundColor: '#00a083',
+            backgroundColor: '#00a083'
           },
           {
-            backgroundColor: '#000000',
+            backgroundColor: '#00c8a6',
             left: activeNavOffset,
             ease: Power2.easeInOut
           }
         )
       })
     }
+  },
+  updated () {
+    this.slideActive()
   },
   mounted () {
     this.slideActive()
@@ -101,6 +100,14 @@ export default {
 <style scoped>
   li.nav-item.btn {
     width: 33%;
+    border-radius: 0;
+    margin-right: 5px;
+  }
+
+  @media (max-width: 992px) {
+    li.nav-item.btn {
+      width: 100%;
+    }
   }
 
   span.nav-slide-line {
@@ -109,7 +116,7 @@ export default {
     margin: 0;
     position: absolute;
     height: 8px;
-    top: 32px;
+    top: 40px;
     width: 33%;
     background-color: #000000;
     z-index: 9;
@@ -121,27 +128,27 @@ export default {
     }
   }
 
-  @media (max-width: 992px) {
-    li.nav-item.btn {
-      width: 100%;
-    }
-  }
-
   a.nav-link {
     color: #ffffff !important;
     width: 100%;
     padding: 0;
   }
 
+  @media (max-width: 1300px) {
+    a.nav-link {
+      font-size: 12px !important;
+    }
+  }
+
   ul.navbar-nav.btn-group {
     width: 100%;
     justify-content: center;
-    border-bottom: 1px solid #000000;
+    /* border-bottom: 1px solid #000000; */
     padding-bottom: 10px;
   }
 
   a.navbar-brand {
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
     padding-left: 10px;
     padding-right: 10px;
     margin-right: 0;
@@ -150,10 +157,10 @@ export default {
   ul.navbar-nav.nav-user {
     min-width: 175px;
     justify-content: center;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
   }
+
   .nav-item.b-nav-dropdown {
     align-self: center;
   }
-  
 </style>
